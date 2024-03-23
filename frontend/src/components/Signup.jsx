@@ -61,9 +61,10 @@ function Signup() {
                 password: password,
               });
               let data = response.data;
+              // we get token when we signup and we store this in localstorage as "token"
               localStorage.setItem("token", data.token);
               // window.location = "/"
-              setUser({ userEmail: email, isLoading: false });
+              setUser({ userEmail: email, isLoading: false }); // if updated this state then appbar will show the right thing (logout)
               navigate("/courses");
             }}
           >
