@@ -1,9 +1,14 @@
 import { Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userEmailState } from "../store/selectors/userEmail";
+import { isUserLoading } from "../store/selectors/isUserLoading.js";
 
-const Landing = () => {
+export const Landing = () => {
   const navigate = useNavigate();
+  const userEmail = useRecoilValue(userEmailState);
+  const userLoading = useRecoilValue(isUserLoading);
   return (
     <div>
       <Grid container style={{ padding: "5vw" }}>

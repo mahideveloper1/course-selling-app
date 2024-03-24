@@ -55,7 +55,7 @@ function Course() {
 }
 
 function GrayTopper() {
-  const title = useRecoilValue(courseTitle);
+  const title = useRecoilValue(courseTitle); //subscribed
   return (
     <div
       style={{
@@ -190,6 +190,7 @@ function UpdateCard() {
 function CourseCard(props) {
   const title = useRecoilValue(courseTitle);
   const imageLink = useRecoilValue(courseImage);
+  const price = useRecoilValue(coursePrice);
 
   return (
     <div
@@ -214,24 +215,15 @@ function CourseCard(props) {
         <img src={imageLink} style={{ width: 350 }}></img>
         <div style={{ marginLeft: 10 }}>
           <Typography variant="h5">{title}</Typography>
-          <Price />
+          <Typography variant="subtitle2" style={{ color: "gray" }}>
+            Price
+          </Typography>
+          <Typography variant="subtitle1">
+            <b>Rs {price} </b>
+          </Typography>
         </div>
       </Card>
     </div>
-  );
-}
-
-function Price() {
-  const price = useRecoilValue(coursePrice);
-  return (
-    <>
-      <Typography variant="subtitle2" style={{ color: "gray" }}>
-        Price
-      </Typography>
-      <Typography variant="subtitle1">
-        <b>Rs {price} </b>
-      </Typography>
-    </>
   );
 }
 

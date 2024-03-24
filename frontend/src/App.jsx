@@ -5,7 +5,7 @@ import Appbar from "./components/Appbar.jsx";
 import AddCourse from "./components/AddCourse.jsx";
 import Courses from "./components/Courses";
 import Course from "./components/Course";
-import { Landing } from "./components/Landing.jsx";
+import Landing from "./components/Landing.jsx";
 import { userState } from "./store/atoms/user.js";
 import { RecoilRoot, useSetRecoilState } from "recoil";
 import axios from "axios";
@@ -36,11 +36,13 @@ function App() {
 }
 
 function InitUser() {
+  //setuser defined
   const setUser = useSetRecoilState(userState);
   const init = async () => {
     try {
+      // try -> when code run successfully if any error then catch runs.
       //sending out a get request, this end point will give your details if logged in and if not then 403 error
-      // and in this you send req and take res as response
+      // and in this you send req and take res as response, in headers we are sending the token which is stored in the local storage to get the user info
       const response = await axios.get(`${BASE_URL}/admin/me`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -49,6 +51,7 @@ function InitUser() {
 
       //if req fails control never reaches here
       if (response.data.username) {
+        //setting value to setuser
         setUser({
           isLoading: false,
           userEmail: response.data.username,
