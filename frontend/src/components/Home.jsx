@@ -1,12 +1,25 @@
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import { Card, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-
+import { useState } from "react";
 import React from "react";
+import { homeState } from "../store/atoms/home.js";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const setUserType = useSetRecoilState(homeState);
+
+  const handleAdminClick = () => {
+    setUserType({ isAdmin: true, isUser: false });
+    navigate("/landing");
+  };
+
+  const handleUserClick = () => {
+    setUserType({ isAdmin: false, isUser: true });
+    navigate("/landing");
+  };
+
   return (
     <div
       style={{
@@ -40,6 +53,7 @@ const Home = () => {
           }}
           size={"large"}
           variant="contained"
+          onClick={handleAdminClick}
         >
           Admin
         </Button>
@@ -52,6 +66,7 @@ const Home = () => {
           }}
           size={"large"}
           variant="contained"
+          onClick={handleUserClick}
         >
           User
         </Button>
