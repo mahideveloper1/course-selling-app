@@ -16,7 +16,7 @@ function AddCourse() {
         display: "flex",
         justifyContent: "center",
         minHeight: "80vh",
-        justifyContent: "center",
+        // justifyContent: "center",
         flexDirection: "column",
       }}
     >
