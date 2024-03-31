@@ -2,7 +2,6 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { useState } from "react";
 import React from "react";
 import { homeState } from "../store/atoms/home.js";
 

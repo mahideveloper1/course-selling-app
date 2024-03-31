@@ -7,12 +7,16 @@ import { BASE_URL } from "../config.js";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../store/atoms/user.js";
+import { useRecoilValue } from "recoil";
+import { adminType, userType } from "../store/selectors/home.js";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
+  const admin = useRecoilValue(adminType);
+  const user = useRecoilValue(userType);
 
   return (
     <div>
@@ -56,16 +60,27 @@ function Signup() {
             size={"large"}
             variant="contained"
             onClick={async () => {
-              const response = await axios.post(`${BASE_URL}/admin/signup`, {
-                username: email,
-                password: password,
-              });
-              let data = response.data;
-              // we get token when we signup and we store this in localstorage as "token"
-              localStorage.setItem("token", data.token);
-              // window.location = "/"
-              setUser({ userEmail: email, isLoading: false }); // if updated this state then appbar will show the right thing (logout)
-              navigate("/courses");
+              const url = admin
+                ? `${BASE_URL}/admin/signup`
+                : `${BASE_URL}/user/signup`;
+              try {
+                const response = await axios.post(url, {
+                  username: email,
+                  password: password,
+                });
+                const data = response.data;
+                localStorage.setItem("token", data.token);
+                setUser({ userEmail: email, isLoading: false });
+                navigate("/courses");
+              } catch (error) {
+                if (error.response) {
+                  console.error(
+                    "Server responded with status code:",
+                    error.response.status
+                  );
+                  console.error("Response data:", error.response.data);
+                }
+              }
             }}
           >
             {" "}

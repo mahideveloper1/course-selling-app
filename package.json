@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-axios": "^2.0.6",
+    "recoil": "^0.7.7"
+  }
+}

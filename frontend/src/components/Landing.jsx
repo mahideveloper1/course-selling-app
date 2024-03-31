@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { userEmailState } from "../store/selectors/userEmail";
 import { isUserLoading } from "../store/selectors/isUserLoading.js";
 import { adminType, userType } from "../store/selectors/home.js";
+
 export const Landing = () => {
   const navigate = useNavigate();
   const userEmail = useRecoilValue(userEmailState);

@@ -2,6 +2,7 @@ const express = require("express");
 const { authenticateJwt, SECRET } = require("../middleware/auth");
 const { User, Course, Admin } = require("../db");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 router.post("/signup", async (req, res) => {
   const { username, password } = req.body;
@@ -19,7 +20,7 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.headers;
+  const { username, password } = req.body;
   const user = await User.findOne({ username, password });
   if (user) {
     const token = jwt.sign({ username, role: "user" }, SECRET, {
