@@ -40,6 +40,7 @@ function Appbar({}) {
           <div style={{ marginRight: 10, display: "flex" }}>
             <div style={{ marginRight: 10 }}>
               <Button
+                variant={"contained"}
                 onClick={() => {
                   navigate("/addcourse");
                 }}
@@ -50,6 +51,7 @@ function Appbar({}) {
 
             <div style={{ marginRight: 10 }}>
               <Button
+                variant={"contained"}
                 onClick={() => {
                   navigate("/courses");
                 }}

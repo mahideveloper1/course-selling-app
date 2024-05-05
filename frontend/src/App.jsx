@@ -31,7 +31,16 @@ function App() {
         }}
       >
         {/* <Home /> */}
-        {!hideAppbarOnHome && <Appbar />}
+        <div
+          style={{
+            width: "100vw",
+            height: "60px",
+            backgroundColor: "#A9A9A9",
+            marginBottom: "40px",
+          }}
+        >
+          {!hideAppbarOnHome && <Appbar />}
+        </div>
         <InitUser />
         <Routes>
           <Route path={"/"} element={<Home />} />
