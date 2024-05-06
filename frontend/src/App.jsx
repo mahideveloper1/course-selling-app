@@ -21,6 +21,7 @@ import Home from "./components/Home.jsx";
 function App() {
   const location = useLocation();
   const hideAppbarOnHome = location.pathname === "/";
+  axios.defaults.withCredentials = true;
   return (
     <RecoilRoot>
       <div
