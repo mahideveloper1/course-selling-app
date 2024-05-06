@@ -6,7 +6,13 @@ const userRouter = require("./routes/user");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://course-fr.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/admin", adminRouter);
@@ -34,5 +40,9 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
+
+app.get("/", (req, res) => {
+  res.json("server is running successfully");
+});
 
 app.listen(3000, () => console.log("Server running on port 3000"));
