@@ -32,6 +32,14 @@
     font-size: 0.9rem;
     padding: 6px 12px;
   }
+
+  .appbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    z-index: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -54,7 +62,11 @@
   }
 
   .appbar {
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    z-index: 1;
   }
 
   .buttons-container {

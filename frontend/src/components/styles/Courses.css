@@ -19,6 +19,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .course-card {

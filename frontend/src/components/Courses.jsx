@@ -36,7 +36,7 @@ function Courses() {
   );
 
   return (
-    <div>
+    <div style={{ maxHeight: "100vh", overflowY: "auto" }}>
       <div className="search-container">
         <TextField
           label="Search Courses"

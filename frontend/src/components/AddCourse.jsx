@@ -4,11 +4,14 @@ import { Card } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config.js";
+import { useNavigate } from "react-router-dom";
+
 function AddCourse() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [price, setPrice] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -16,7 +19,6 @@ function AddCourse() {
         display: "flex",
         justifyContent: "center",
         minHeight: "80vh",
-        // justifyContent: "center",
         flexDirection: "column",
       }}
     >
@@ -85,10 +87,11 @@ function AddCourse() {
                 }
               );
               alert("Added course!");
+              navigate("/courses/");
             }}
           >
             {" "}
-            Add Course
+            Add course
           </Button>
         </Card>
       </div>
