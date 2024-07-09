@@ -19,7 +19,7 @@ export const Landing = () => {
         <Grid container style={{ padding: "5vw" }}>
           <Grid item xs={12} md={6} lg={6}>
             <div style={{ marginTop: 100 }}>
-              <Typography variant={"h2"}>Coursera Admin</Typography>
+              <Typography variant={"h2"}>Mahi App Admin</Typography>
               <Typography variant={"h5"}>
                 A place to learn, earn and grow
               </Typography>

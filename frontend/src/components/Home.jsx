@@ -1,9 +1,10 @@
+import React from "react";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import React from "react";
 import { homeState } from "../store/atoms/home.js";
+import "./styles/Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,29 +21,16 @@ const Home = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(/backgr.avif)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <div
-        style={{
-          paddingTop: 150,
-          marginBottom: 10,
-          display: "flex",
-          justifyContent: "center",
-        }}
+    <div className="container">
+      <Typography
+        variant="h2"
+        className="title"
+        style={{ marginTop: "10px", marginBottom: "50px" }}
       >
-        <Typography variant={"h2"} style={{ color: "white" }}>
-          Welcome to Coursera. You want to be ?
-        </Typography>
-      </div>
+        Welcome to Mahi Course App. You want to be?
+      </Typography>
       <br />
-      <br />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="button-container">
         <Button
           style={{
             marginRight: "10px",
@@ -50,7 +38,6 @@ const Home = () => {
             color: "white",
             backgroundColor: "#03C03C",
           }}
-          size={"large"}
           variant="contained"
           onClick={handleAdminClick}
         >
@@ -59,11 +46,11 @@ const Home = () => {
 
         <Button
           style={{
+            marginRight: "10px",
             fontSize: "1.5rem",
             color: "white",
             backgroundColor: "#03C03C",
           }}
-          size={"large"}
           variant="contained"
           onClick={handleUserClick}
         >

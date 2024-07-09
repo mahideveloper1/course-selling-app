@@ -1,126 +1,66 @@
-import { Typography } from "@mui/material";
-import Button from "@mui/material/Button";
+import React from "react";
+import { Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { isUserLoading } from "../store/selectors/isUserLoading";
 import { useSetRecoilState, useRecoilValue } from "recoil";
+import { isUserLoading } from "../store/selectors/isUserLoading";
 import { userState } from "../store/atoms/user.js";
 import { userEmailState } from "../store/selectors/userEmail";
+import "./styles/Appbar.css";
 
 // first we get the data from get request in app.js took the useremail from data set it and based on this cond if useremail then show addcourse , logout option and if not then show the signup , signin option
-function Appbar({}) {
+function Appbar() {
   const navigate = useNavigate();
   const userLoading = useRecoilValue(isUserLoading);
   const userEmail = useRecoilValue(userEmailState);
   const setUser = useSetRecoilState(userState);
 
   if (userLoading) {
-    return <></>;
+    return null;
   }
 
-  if (userEmail) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: 4,
-          zIndex: 1,
-        }}
-      >
-        <div
-          style={{ marginLeft: 10, cursor: "pointer" }}
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <Typography variant={"h6"}>Coursera</Typography>
-        </div>
+  const handleLogout = () => {
+    localStorage.setItem("token", null);
+    setUser({
+      isLoading: false,
+      userEmail: null,
+    });
+    navigate("/landing");
+  };
 
-        <div style={{ display: "flex" }}>
-          <div style={{ marginRight: 10, display: "flex" }}>
-            <div style={{ marginRight: 10 }}>
-              <Button
-                variant={"contained"}
-                onClick={() => {
-                  navigate("/addcourse");
-                }}
-              >
-                Add course
-              </Button>
-            </div>
+  return (
+    <div className="appbar">
+      <div className="logo" onClick={() => navigate("/")}>
+        <Typography variant="h6" className="logo-text">
+          Mahi Course App
+        </Typography>
+      </div>
 
-            <div style={{ marginRight: 10 }}>
-              <Button
-                variant={"contained"}
-                onClick={() => {
-                  navigate("/courses");
-                }}
-              >
-                Courses
-              </Button>
-            </div>
-
-            <Button
-              variant={"contained"}
-              onClick={() => {
-                localStorage.setItem("token", null);
-                setUser({
-                  isLoading: false,
-                  userEmail: null,
-                });
-                navigate("/landing");
-              }}
-            >
+      <div className="buttons-container">
+        {userEmail ? (
+          <>
+            <Button variant="contained" onClick={() => navigate("/addcourse")}>
+              Add Course
+            </Button>
+            <Button variant="contained" onClick={() => navigate("/courses")}>
+              Courses
+            </Button>
+            <Button variant="contained" onClick={handleLogout}>
               Logout
             </Button>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: 4,
-          zIndex: 1,
-        }}
-      >
-        <div
-          style={{ marginLeft: 10, cursor: "pointer" }}
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <Typography variant={"h6"}>Coursera</Typography>
-        </div>
-
-        <div style={{ display: "flex" }}>
-          <div style={{ marginRight: 10 }}>
-            <Button
-              variant={"contained"}
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
+          </>
+        ) : (
+          <>
+            <Button variant="contained" onClick={() => navigate("/signup")}>
               Signup
             </Button>
-          </div>
-          <div>
-            <Button
-              variant={"contained"}
-              onClick={() => {
-                navigate("/signin");
-              }}
-            >
+            <Button variant="contained" onClick={() => navigate("/signin")}>
               Signin
             </Button>
-          </div>
-        </div>
+          </>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Appbar;

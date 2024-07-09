@@ -1,4 +1,4 @@
-import { Card, Grid } from "@mui/material";
+import { Card, Grid, keyframes } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Typography, TextField, Button } from "@mui/material";
@@ -55,42 +55,51 @@ function Course() {
 }
 
 function GrayTopper() {
-  const title = useRecoilValue(courseTitle); //subscribed
+  const title = useRecoilValue(courseTitle);
   return (
-    <div
-      style={{
-        height: 250,
-        background: "#212121",
-        top: 0,
-        width: "100vw",
-        zIndex: 0,
-        marginBottom: -250,
-      }}
-    >
+    <>
       <div
         style={{
           height: 250,
+          width: "100vw",
+          marginBottom: -250,
+          marginTop: -35,
+          background: `
+          radial-gradient(circle, white 1%, transparent 1%) center/20px 20px,
+          linear-gradient(45deg, #1a1a1a, #212121, #1a1a1a)
+        `,
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
           flexDirection: "column",
         }}
       >
-        <div>
-          <Typography
-            style={{ color: "white", fontWeight: 600 }}
-            variant="h3"
-            textAlign={"center"}
-          >
-            {title}
-          </Typography>
+        <div
+          style={{
+            height: 250,
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <div>
+            <Typography
+              style={{ color: "white", fontWeight: 600 }}
+              variant="h3"
+              textAlign={"center"}
+            >
+              {title}
+            </Typography>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 function UpdateCard() {
   const [courseDetails, setCourse] = useRecoilState(courseState);
+  const courseLoading = useRecoilValue(isCourseLoading);
 
   const [title, setTitle] = useState(courseDetails.course.title);
   const [description, setDescription] = useState(
@@ -135,7 +144,7 @@ function UpdateCard() {
               setImage(e.target.value);
             }}
             fullWidth={true}
-            label="Image link"
+            label="Course link"
             variant="outlined"
           />
           <TextField
@@ -168,6 +177,8 @@ function UpdateCard() {
                   },
                 }
               );
+              alert("Updated course!");
+
               let updatedCourse = {
                 _id: courseDetails.course._id,
                 title: title,
@@ -189,7 +200,6 @@ function UpdateCard() {
 
 function CourseCard(props) {
   const title = useRecoilValue(courseTitle);
-  const imageLink = useRecoilValue(courseImage);
   const price = useRecoilValue(coursePrice);
 
   return (
@@ -210,9 +220,9 @@ function CourseCard(props) {
           marginRight: 50,
           paddingBottom: 15,
           zIndex: 2,
+          backgroundColor: "#E8E8E8",
         }}
       >
-        <img src={imageLink} style={{ width: 350 }}></img>
         <div style={{ marginLeft: 10 }}>
           <Typography variant="h5">{title}</Typography>
           <Typography variant="subtitle2" style={{ color: "gray" }}>

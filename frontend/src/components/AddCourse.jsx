@@ -51,7 +51,7 @@ function AddCourse() {
               setImage(e.target.value);
             }}
             fullWidth={true}
-            label="Image link"
+            label="Course link"
             variant="outlined"
           />
 
@@ -88,7 +88,7 @@ function AddCourse() {
             }}
           >
             {" "}
-            Add course
+            Add Course
           </Button>
         </Card>
       </div>

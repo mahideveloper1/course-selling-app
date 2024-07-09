@@ -29,7 +29,7 @@ function Signup() {
         }}
       >
         <Typography variant={"h6"}>
-          Welcome to Coursera. Sign up below
+          Welcome to Mahi Course App. Sign up below
         </Typography>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>

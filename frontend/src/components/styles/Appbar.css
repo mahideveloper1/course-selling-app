@@ -1,0 +1,70 @@
+.appbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  z-index: 1;
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  display: block;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.buttons-container button {
+  margin-right: 10px;
+  font-size: 1rem;
+  padding: 8px 16px;
+}
+
+@media (max-width: 768px) {
+  .buttons-container button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttons-container button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .buttons-container button {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 470px) {
+  .logo-text {
+    display: none;
+  }
+
+  .appbar {
+    justify-content: center;
+  }
+
+  .buttons-container {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .buttons-container button {
+    margin-right: 5px;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}

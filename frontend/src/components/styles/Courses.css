@@ -1,0 +1,33 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  .search-box {
+    width: 80%;
+    margin-left: 0;
+  }
+}
+
+.course-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.course-card {
+  margin: 10px;
+  width: 300px;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.course-card img {
+  width: 100%;
+}
