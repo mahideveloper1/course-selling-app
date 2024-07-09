@@ -86,8 +86,8 @@ export function Course({ course }) {
           display: "flex",
           justifyContent: "center",
           gap: "16px",
-          marginTop: 50,
-          paddingTop: "25px",
+          marginTop: 20,
+          paddingTop: "5px",
         }}
       >
         <Button
